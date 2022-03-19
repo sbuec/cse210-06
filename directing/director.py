@@ -22,11 +22,14 @@ class Director:
 
     # Receives inputs from players
     def get_inputs(self, cast):
-        pass
+        for actor in cast:
+            self._ks.check_keys_pressed(actor, actor._keys)
+
 
     # Updates object values (location, speed, etc.)
     def do_updates(self, cast):
         pass
+
 
     # Puts all the changes together and draws next frame
     def do_outputs(self, cast):
