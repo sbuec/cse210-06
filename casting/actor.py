@@ -1,6 +1,4 @@
-from structs import Window, Character
-import pyray as pr
-from casting.Load import Load
+from structs import Window
 
 class Actor:
     '''
@@ -21,20 +19,8 @@ class Actor:
         x_pos (int): x position
         y_pos (int): y position        
         '''
-        self.position_x = x_pos
-        self.position_y = y_pos
-    
-    def image_load_texture(image_file: str) -> pr.Texture:
-        '''
-        Description: Loads a pr.Texture from an image file.
-
-        Args:
-        - image_file (str): The file of the image to load
-
-        Returns:
-        - pr.Texture
-        '''
-        return Load.image_file_to_texture(image_file)
+        self.position_x += x_pos
+        self.position_y += y_pos
 
     def set_start_position(self):
         '''

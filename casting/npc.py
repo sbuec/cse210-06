@@ -9,15 +9,13 @@ class npc(Paddle):
 
     Args:
     - window (Window): The programs information about the Window
-    - width (int): Width of paddle
-    - height (int): Height paddle
     - color (pr.Color): Color of Paddle
     - paddle_side (str): The side at which the paddle is created ('left' / 'right')
     - ball (Ball): The ball Actor currently on screen
     '''
 
-    def __init__(self, window: Window, width: int, height: int, texture: pr.Texture, paddle_side: str, ball: Ball):
-        super().__init__(window, width, height, texture, paddle_side)
+    def __init__(self, window: Window, texture: pr.Texture, paddle_side: str, ball: Ball):
+        super().__init__(window, texture, paddle_side)
         self.ball = ball
 
     def locate_ball_y(self):

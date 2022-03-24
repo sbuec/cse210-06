@@ -8,14 +8,12 @@ class Player(Paddle):
 
     Args:
     - window (Window): The programs information about the Window
-    - width (int): Width of paddle
-    - height (int): Height paddle
     - color (pr.Color): Color of Paddle
     - paddle_side (str): The side at which the paddle is created ('left' / 'right') 
     - key_dict (dict): The keys that control the player's movement
     '''
-    def __init__(self, window: Window, width: int, height: int, texture: pr.Texture, paddle_side: str, key_dict: dict):
-        super().__init__(window, width, height, texture, paddle_side)
+    def __init__(self, window: Window, texture: pr.Texture, paddle_side: str, key_dict: dict):
+        super().__init__(window, texture, paddle_side)
         self._keys = key_dict
         self.set_initial_movement()
     
@@ -33,4 +31,4 @@ class Player(Paddle):
     
     # Actor.image_load_texture(image_file) loads loads the image into a texture to use on the paddle
     # self.draw() draws the player paddle
-    # self.set_initial_movement() sets player's initial movement
+    # self.set_initial_movement() sets player's initial movement - This is called when paddle is created

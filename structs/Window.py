@@ -15,7 +15,7 @@ class Window:
         self.caption = caption
         self.fps_cap = fps_cap
 
-    def return_pr_window_setup(self):
+    def pr_window_setup(self):
         return self.width, self.height, self.fps_cap, self.caption
 
     def __repr__(self) -> str:
