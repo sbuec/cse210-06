@@ -1,31 +1,35 @@
-'''
-Classes to define objects such as players that use inputs
-and NPCs that don't use inputs
-'''
+from structs import Window
 
 class Actor:
-    def __init__(self):
-        pass
-
-
-# Class to create playable objects
-class Player(Actor):
-    ''' 
-    Initializes actor
-    Requires key dictionary to define which keys affect the player object
     '''
-    def __init__(self, key_dict):
-        super().__init__()
-        self._keys = key_dict
-        
-        # Sets initial movements to False to create object without moving
-        self._move = {
-            'left': False,
-            'right': False,
-            'up': False,
-            'down': False
-            }
+    Description: Base class for all Actors.
 
-# Class to create objects that move on their own or stay still
-class NPC(Actor):
-    pass
+    Args:
+    - window (Window): The programs information about the Window
+    '''
+    
+    def __init__(self, window: Window):
+        self.window = window
+
+    def update_position(self, x_pos, y_pos):
+        '''
+        Description: updates x/y coords for actors.
+
+        Args:
+        x_pos (int): x position
+        y_pos (int): y position        
+        '''
+        self.position_x += x_pos
+        self.position_y += y_pos
+
+    def set_start_position(self):
+        '''
+        Description: Default behavior for setting actor's default position.
+        '''
+        raise NotImplementedError
+
+    def draw(self):
+        '''
+        Description: Default behavior for drawing an actor. 
+        '''
+        raise NotImplementedError
