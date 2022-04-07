@@ -18,6 +18,8 @@ class Paddle(Actor):
         self.texture = texture
         self.paddle_side = paddle_side.lower()
         self.set_start_position()
+        self.score = 0
+        self.speed = 3
 
     def set_start_position(self):
         '''

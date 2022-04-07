@@ -12,10 +12,8 @@ screen_caption = 'Pong Renewed'
 
 # player key dictionary
 key_dict = {
-    'up': pr.is_key_down(pr.KEY_UP),
-    'down': pr.is_key_down(pr.KEY_DOWN),
-    'left': pr.is_key_down(pr.KEY_LEFT),
-    'right': pr.is_key_down(pr.KEY_RIGHT)
+    'up': pr.is_key_down(pr.KEY_UP) or pr.is_key_down(pr.KEY_W),
+    'down': pr.is_key_down(pr.KEY_DOWN) or pr.is_key_down(pr.KEY_S)
 }
 
 # holds window information
@@ -31,16 +29,18 @@ def main():
 
     # created a paddle texture (image to make texture from)
     # NOTE: The image can only be a png
-    paddle_texture = Load.image_file_to_texture('TwitterIcon.png')
+    paddle_texture = Load.image_file_to_texture('Paddle.png')
 
     # creates player and npc paddles (window information, paddle texture, side of screen paddle appears, keys|ball)
     paddle1 = Player(window, paddle_texture, 'left', key_dict)
     paddle2 = npc(window, paddle_texture, 'right', ball)
+    bv = [-3, 2]
 
     while not pr.window_should_close():
 
         # updated balls position
-        ball.update_position(1, 0)
+        ball.update_position(bv[0], bv[1])
+        
 
         # checks to see if ball has collided with paddles
         collided2 = ball.check_collision(paddle2)
@@ -53,6 +53,10 @@ def main():
         paddle1.draw()
         paddle2.draw()
 
+        #Update paddle positions
+        paddle1.updatePos()
+        paddle2.updatePos()
+
         # draws ball
         ball.draw()
 
@@ -60,9 +64,20 @@ def main():
 
         # does something when ball hits paddles
         if collided2:
-            print('hit paddle 2!')
+            ball.calculateBV(paddle2)
         if collided1:
-            print('hit paddle 1!')
+            ball.calculateBV(paddle1)
+
+        if (ball.position_x <= 0):
+            paddle2.score += 1
+            print(f"You: {paddle1.score} Bot: {paddle2.score}")
+            ball.set_start_position()
+        elif (ball.position_x >= 900):
+            paddle1.score += 1
+            print(f"You: {paddle1.score} Bot: {paddle2.score}")
+            ball.set_start_position()
+
+        print(paddle1.position_y)
     
     pr.close_window()
 

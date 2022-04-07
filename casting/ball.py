@@ -47,6 +47,9 @@ class Ball(Actor):
             pr.Rectangle(paddle.position_x, paddle.position_y, paddle.texture.width, paddle.texture.height)
         )
     
+    def calculateBV(self, paddle):
+        pass
+
     # self.position_x holds x position
     # self.position_y holds y position
     

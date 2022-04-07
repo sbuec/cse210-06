@@ -19,8 +19,8 @@ class Actor:
         x_pos (int): x position
         y_pos (int): y position        
         '''
-        self.position_x += x_pos
-        self.position_y += y_pos
+        self.position_x = self.position_x + x_pos
+        self.position_y = self.position_y + y_pos
 
     def set_start_position(self):
         '''

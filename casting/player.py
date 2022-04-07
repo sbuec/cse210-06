@@ -16,16 +16,32 @@ class Player(Paddle):
         super().__init__(window, texture, paddle_side)
         self._keys = key_dict
         self.set_initial_movement()
+        self.window = Window
     
     def set_initial_movement(self):
         # Sets initial movements to False to create object without moving
         self._move = {
-            'left': False,
-            'right': False,
             'up': False,
             'down': False
             }
-    
+
+    def clamp(self, n, minn, maxn):
+        if n < minn:
+            return minn
+        elif n > maxn:
+            return maxn
+        else:
+            return n
+
+    def updatePos(self):
+        if (pr.is_key_down(pr.KEY_UP) or pr.is_key_down(pr.KEY_W)):
+            self.position_y -= self.speed
+        elif (pr.is_key_down(pr.KEY_DOWN) or pr.is_key_down(pr.KEY_S)):
+            self.position_y += self.speed
+
+        self.position_y = self.clamp(self.position_y, 5, 375)
+
+
     # self.position_x holds x position
     # self.position_y holds y position
     

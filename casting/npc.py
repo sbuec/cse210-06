@@ -27,6 +27,23 @@ class npc(Paddle):
     def set_location(self):
         self.position_y = self.ball_y
 
+    def clamp(self, n, minn, maxn):
+        if n < minn:
+            return minn
+        elif n > maxn:
+            return maxn
+        else:
+            return n
+
+    def updatePos(self):
+        if (self.position_y < self.ball.position_y):
+            self.position_y += self.speed
+        elif (self.position_y > self.ball.position_y):
+            self.position_y -= self.speed
+        
+        self.position_y = self.clamp(self.position_y, 5, 375)
+
+
     # self.position_x holds x position
     # self.position_y holds y position
     
